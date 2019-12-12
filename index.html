@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row black">
+        <div class="col-sm-12  text-center">
+          <h1>Welcome to your new day planner!</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="row">
+            Search Bar
+          </div>
+          <div class="row">
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label class="sr-only">City</label>
+                <input
+                  class="form-control"
+                  id="searchBar"
+                  placeholder="Enter City Name!"
+                  value=""
+                />
+              </div>
+              <button class="btn btn-primary mb-2 searchButton">
+                Search
+              </button>
+            </form>
+          </div>
+          <div class="row" id="newCityArea">
+            History
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="container" id="weatherInfo">
+              <div class="row">
+                <div class="col-sm-12">
+                  <p id="cityName" class="stagnentWeatherInfo">hey</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p id="temp" class="stagnentWeatherInfo">hey</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <p id="wind" class="stagnentWeatherInfo">hey</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container" id="forecast">
+              <div>5-Day Forecast:</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+</html>
