@@ -97,7 +97,7 @@ function uvIndex(response) {
   var lat = response.coord.lat;
   var lon = response.coord.lon;
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+    "https://api.openweathermap.org/data/2.5/uvi?appid=" +
     key +
     "&lat=" +
     lat +
@@ -171,7 +171,7 @@ function forecast(response) {
   var lat = response.coord.lat;
   var lon = response.coord.lon;
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/forecast?lat=" +
+    "https://api.openweathermap.org/data/2.5/forecast?lat=" +
     lat +
     "&lon=" +
     lon +
@@ -194,7 +194,7 @@ function forecast(response) {
       var img = $("<img>");
       img.attr(
         "src",
-        "http://openweathermap.org/img/wn/" +
+        "https://openweathermap.org/img/wn/" +
           response.list[i.toString()].weather[0].icon +
           "@2x.png"
       );
