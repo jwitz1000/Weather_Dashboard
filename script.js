@@ -1,6 +1,7 @@
 var key = "d73fae2e1ac5146d1ea6fa1f709095ec";
 var m = moment();
 var todayDate = moment().format("MMMM Do YYYY");
+
 // check to see if cities array in local storage, if not, make an empty one
 if (!localStorage.getItem("cities")) {
   var cities = [];
@@ -15,25 +16,27 @@ renderHistory();
 $(document).on("click", ".searchButton", function() {
   event.preventDefault();
   var currentCity = $("#searchBar").val();
+  console.log(cities.indexOf(currentCity));
+  if (cities.indexOf(currentCity) == -1) {
+    var queryURL =
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      currentCity +
+      "&APPID=" +
+      key;
 
-  var queryURL =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
-    currentCity +
-    "&APPID=" +
-    key;
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      displayCity(response);
+      uvIndex(response);
+      forecast(response);
+    });
 
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response) {
-    displayCity(response);
-    uvIndex(response);
-    forecast(response);
-  });
-
-  cities.push(currentCity);
-  saveInfo();
-  renderHistory();
+    cities.push(currentCity);
+    saveInfo();
+    renderHistory();
+  }
 });
 
 // on click for city buttons
@@ -118,6 +121,13 @@ function saveInfo() {
 }
 
 function forecast(response) {
+  $("#forecast").empty();
+  $("#forecastTitle").empty();
+
+  var newDiv = $("<div>");
+  newDiv.text("5-Day Forecast:");
+  $("#forecastTitle").append(newDiv);
+
   var city = response.name;
   var lat = response.coord.lat;
   var lon = response.coord.lon;
@@ -134,18 +144,27 @@ function forecast(response) {
     method: "GET"
   }).then(function(response) {
     console.log(response);
-    for (var i = 0; i < 5; i++) {
-      console.log("hey");
+    for (var i = 0; i < response.list.length; i += 8) {
       var col = $("<div>");
       col.addClass = "col-sm-2";
       var card = $("<div>");
       card.addClass("card");
       var cardBody = $("<div>");
       cardBody.addClass("card-body");
+      console.log(response.list[i.toString()].weather[0].icon);
+      var img = $("<img>");
+      img.attr(
+        "src",
+        "http://openweathermap.org/img/wn/" +
+          response.list[i.toString()].weather[0].icon +
+          "@2x.png"
+      );
+
       var text = $("<p>");
-      text.text(response.list[i.toString()].main.temp);
-      console.log(response.list[i.toString()].main.temp);
+      text.text("Temperature: " + response.list[i.toString()].main.temp);
       cardBody.prepend(text);
+      cardBody.prepend(img);
+
       card.prepend(cardBody);
       col.prepend(card);
       $("#forecast").prepend(col);

@@ -24,9 +24,6 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="row">
-            Search Bar
-          </div>
-          <div class="row">
             <form class="form-inline">
               <div class="form-group mx-sm-3 mb-2">
                 <label class="sr-only">City</label>
@@ -42,6 +39,9 @@
               </button>
             </form>
           </div>
+          <div class="row">
+            Search History
+          </div>
           <div class="row" id="newCityArea">
             History
           </div>
@@ -51,33 +51,35 @@
             <div class="container" id="weatherInfo">
               <div class="row">
                 <div class="col-sm-12">
-                  <p id="cityName" class="stagnentWeatherInfo">
-                    City Name Here
+                  <p id="cityName" class="stagnentWeatherInfo intro">
+                    Type in the name of your city in the search bar to see
+                    weather statistics as well as a 5-day forecast!
                   </p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <p id="temp" class="stagnentWeatherInfo">Temperature Here</p>
+                  <p id="temp" class="stagnentWeatherInfo"></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <p id="wind" class="stagnentWeatherInfo">Wind Here</p>
+                  <p id="wind" class="stagnentWeatherInfo"></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <p id="humidity" class="stagnentWeatherInfo">Humidity Here</p>
+                  <p id="humidity" class="stagnentWeatherInfo"></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <p id="UV" class="stagnentWeatherInfo">UV index here</p>
+                  <p id="UV" class="stagnentWeatherInfo"></p>
                 </div>
               </div>
             </div>
           </div>
+          <div class="row" id="forecastTitle"></div>
           <div class="row" id="forecast">
             <!-- <div class="container" id="forecast"></div> -->
           </div>
