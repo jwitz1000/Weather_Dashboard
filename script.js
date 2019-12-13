@@ -88,7 +88,7 @@ function displayCity(response) {
   $("#cityName").text(response.name + ", " + todayDate);
   $("#temp").text("Temperature is " + temp + " degrees F");
   $("#wind").text("Wind speeds of " + wind + " mph");
-  $("#humidity").text("humidity of " + humidity + "%");
+  $("#humidity").text("Humidity of " + humidity + "%");
 }
 
 // displays UV index with other weather stats

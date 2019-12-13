@@ -1,18 +1,18 @@
 .black {
-  background: black;
+  background: rgb(44, 44, 44);
 }
 
 .intro {
-  font-size: 36px;
+  font-size: 30px;
 }
 
 .makeWhite {
   color: white;
 }
 
-/* .leftEntire {
+.leftEntire {
   background: rgb(246, 246, 246);
-} */
+}
 .leftSide {
   width: 100%;
 }
@@ -43,4 +43,15 @@
 }
 .cityButton:last-of-type {
   border: none;
+}
+
+.rightSidePanel {
+  margin-left: 20px;
+}
+
+h1 {
+  font-size: 48px;
+}
+#forecastTitle {
+  font-size: 20px;
 }

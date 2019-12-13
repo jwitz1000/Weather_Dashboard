@@ -15,8 +15,8 @@
   <body>
     <div class=" whole ">
       <div class="container-fluid ">
-        <div class="row black">
-          <div class="col-sm-12  text-center makeWhite">
+        <div class="row black mb-3">
+          <div class="col-sm-12  text-center makeWhite pt-2 pb-2">
             <h1>Weather Dashboard</h1>
           </div>
         </div>
@@ -57,41 +57,43 @@
           </div>
 
           <div class="col-sm-8">
-            <div class="row">
-              <div class="weatherStagnentInfo leftSide" id="weatherInfo">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p id="cityName" class="stagnentWeatherInfo intro">
-                      Type in the name of your city in the search bar to see
-                      weather statistics as well as a 5-day forecast!
-                    </p>
+            <div class="rightSidePanel">
+              <div class="row">
+                <div class="weatherStagnentInfo leftSide" id="weatherInfo">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p id="cityName" class="stagnentWeatherInfo intro">
+                        Type in the name of your city in the search bar to see
+                        weather statistics as well as a 5-day forecast!
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p id="temp" class="stagnentWeatherInfo"></p>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p id="temp" class="stagnentWeatherInfo"></p>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p id="wind" class="stagnentWeatherInfo"></p>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p id="wind" class="stagnentWeatherInfo"></p>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p id="humidity" class="stagnentWeatherInfo"></p>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p id="humidity" class="stagnentWeatherInfo"></p>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <p id="UV" class="stagnentWeatherInfo"></p>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <span id="UV" class="stagnentWeatherInfo p-2"></span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row" id="forecastTitle"></div>
-            <div class="row" id="forecast">
-              <!-- <div class="container" id="forecast"></div> -->
+              <div class="row mt-4" id="forecastTitle"></div>
+              <div class="row" id="forecast">
+                <!-- <div class="container" id="forecast"></div> -->
+              </div>
             </div>
           </div>
         </div>
