@@ -1,6 +1,3 @@
-h1 {
-  color: white;
-}
 .black {
   background: black;
 }
@@ -11,3 +8,32 @@ h1 {
 .intro {
   font-size: 36px;
 }
+.weatherStagnentInfo {
+  /* text-align: left; */
+}
+
+body {
+  /* background-image: url("../images/back3.jpg ");
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: rgb(219, 219, 219); */
+}
+.makeWhite {
+  color: white;
+}
+
+.leftSide {
+  border: 3px solid black;
+  margin: none;
+  width: 100%;
+}
+/* .cards {
+  color: black;
+  margin-bottom: 10px;
+} */
+
+/* .whole {
+  border-radius: 0.5in;
+  max-width: 90%;
+} */

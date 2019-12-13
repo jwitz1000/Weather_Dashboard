@@ -28,11 +28,13 @@ $(document).on("click", ".searchButton", function() {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      displayCity(response);
-      uvIndex(response);
-      forecast(response);
+      if (response) {
+        displayCity(response);
+        uvIndex(response);
+        forecast(response);
+      }
     });
-
+    // if
     cities.push(currentCity);
     saveInfo();
     renderHistory();
@@ -164,6 +166,7 @@ function forecast(response) {
       text.text("Temperature: " + response.list[i.toString()].main.temp);
       cardBody.prepend(text);
       cardBody.prepend(img);
+      cardBody.addClass("cards");
 
       card.prepend(cardBody);
       col.prepend(card);
