@@ -182,7 +182,6 @@ function forecast(response) {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
     var sum = 0;
     for (var i = 0; i < response.list.length; i += 8) {
       var col = $("<div>");
