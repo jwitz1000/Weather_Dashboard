@@ -48,12 +48,12 @@ $(document).on("click", ".searchButton", function() {
         uvIndex(response);
         displayCity(response);
         forecast(response);
+        cities.push(currentCity);
+        saveInfo();
+        renderHistory();
       }
     });
     // if
-    cities.push(currentCity);
-    saveInfo();
-    renderHistory();
   }
 });
 
@@ -82,7 +82,7 @@ $(document).on("click", ".cityButton", function() {
 function displayCity(response) {
   $(".stagnentWeatherInfo").empty();
   var temp = Math.round(response.main.temp * (9 / 5) - 459.67);
-  var wind = response.wind.speed * 2.237;
+  var wind = Math.round(response.wind.speed * 2.237);
   var humidity = response.main.humidity;
 
   $("#cityName").text(response.name + ", " + todayDate);
@@ -129,23 +129,27 @@ function uvIndex(response) {
 function renderHistory() {
   if (!localStorage.getItem("cities")) {
     var cities = [];
+    $("#newCityArea").addClass("hideBorder");
     console.log(cities);
   } else {
     var cities = JSON.parse(localStorage.getItem("cities"));
+    $("#newCityArea").removeClass("hideBorder");
   }
   $("#newCityArea").empty();
+
   for (var i = 0; i < cities.length; i++) {
-    var row = $("<div>");
-    row.addClass("row");
-    var col = $("<div>");
-    row.addClass("col-sm-12");
+    // var row = $("<div>");
+    // row.addClass("row");
+    // var col = $("<div>");
+    // row.addClass("col-sm-12");
     var element = $("<button>");
     element.text(cities[i]);
     element.addClass("cityButton");
+
     element.attr("value", cities[i]);
-    col.prepend(element);
-    row.prepend(col);
-    $("#newCityArea").prepend(row);
+    // col.prepend(element);
+    // row.prepend(element);
+    $("#newCityArea").prepend(element);
   }
 }
 
