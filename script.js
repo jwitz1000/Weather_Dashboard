@@ -1,14 +1,30 @@
 var key = "d73fae2e1ac5146d1ea6fa1f709095ec";
 var m = moment();
 var todayDate = moment().format("MMMM Do YYYY");
+var dayTwo = moment()
+  .add(1, "d")
+  .format("MMMM Do YYYY");
+var dayThree = moment()
+  .add(2, "d")
+  .format("MMMM Do YYYY");
+var dayFour = moment()
+  .add(3, "d")
+  .format("MMMM Do YYYY");
+var dayFive = moment()
+  .add(4, "d")
+  .format("MMMM Do YYYY");
+var daySix = moment()
+  .add(5, "d")
+  .format("MMMM Do YYYY");
+var days = [dayTwo, dayThree, dayFour, dayFive, daySix];
 
 // check to see if cities array in local storage, if not, make an empty one
+
 if (!localStorage.getItem("cities")) {
   var cities = [];
 } else {
   var cities = JSON.parse(localStorage.getItem("cities"));
 }
-
 // render history list of cities
 renderHistory();
 
@@ -29,8 +45,8 @@ $(document).on("click", ".searchButton", function() {
       method: "GET"
     }).then(function(response) {
       if (response) {
-        displayCity(response);
         uvIndex(response);
+        displayCity(response);
         forecast(response);
       }
     });
@@ -55,8 +71,9 @@ $(document).on("click", ".cityButton", function() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    displayCity(response);
     uvIndex(response);
+
+    displayCity(response);
     forecast(response);
   });
 });
@@ -64,14 +81,14 @@ $(document).on("click", ".cityButton", function() {
 // displays stagnent weather stats
 function displayCity(response) {
   $(".stagnentWeatherInfo").empty();
-  var temp = response.main.temp;
-  var wind = response.wind.speed;
+  var temp = Math.round(response.main.temp * (9 / 5) - 459.67);
+  var wind = response.wind.speed * 2.237;
   var humidity = response.main.humidity;
 
   $("#cityName").text(response.name + ", " + todayDate);
-  $("#temp").text("Temperature is " + temp + " degrees Kelvin");
+  $("#temp").text("Temperature is " + temp + " degrees F");
   $("#wind").text("Wind speeds of " + wind + " mph");
-  $("#humidity").text("humidity of " + humidity + " units");
+  $("#humidity").text("humidity of " + humidity + "%");
 }
 
 // displays UV index with other weather stats
@@ -91,15 +108,31 @@ function uvIndex(response) {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
+    var UVvalue = response.value;
+    console.log(UVvalue);
+    var UV = $("#UV");
+    UV.css("color", "white");
 
-    var UV = response.value;
-    $("#UV").text("UV index: " + UV);
+    if (UVvalue > 8) {
+      UV.css("background-color", "red");
+    } else if (UVvalue > 3 && UVvalue < 8) {
+      UV.css("background-color", "blue");
+    } else {
+      UV.css("background-color", "green");
+    }
+
+    UV.text("UV index: " + UVvalue);
   });
 }
 
 // renders history cities
 function renderHistory() {
+  if (!localStorage.getItem("cities")) {
+    var cities = [];
+    console.log(cities);
+  } else {
+    var cities = JSON.parse(localStorage.getItem("cities"));
+  }
   $("#newCityArea").empty();
   for (var i = 0; i < cities.length; i++) {
     var row = $("<div>");
@@ -109,7 +142,6 @@ function renderHistory() {
     var element = $("<button>");
     element.text(cities[i]);
     element.addClass("cityButton");
-    element.addClass("btn-primary");
     element.attr("value", cities[i]);
     col.prepend(element);
     row.prepend(col);
@@ -122,6 +154,7 @@ function saveInfo() {
   localStorage.setItem("cities", JSON.stringify(cities));
 }
 
+// creates forecast
 function forecast(response) {
   $("#forecast").empty();
   $("#forecastTitle").empty();
@@ -146,6 +179,7 @@ function forecast(response) {
     method: "GET"
   }).then(function(response) {
     console.log(response);
+    var sum = 0;
     for (var i = 0; i < response.list.length; i += 8) {
       var col = $("<div>");
       col.addClass = "col-sm-2";
@@ -153,7 +187,7 @@ function forecast(response) {
       card.addClass("card");
       var cardBody = $("<div>");
       cardBody.addClass("card-body");
-      console.log(response.list[i.toString()].weather[0].icon);
+
       var img = $("<img>");
       img.attr(
         "src",
@@ -162,15 +196,36 @@ function forecast(response) {
           "@2x.png"
       );
 
-      var text = $("<p>");
-      text.text("Temperature: " + response.list[i.toString()].main.temp);
-      cardBody.prepend(text);
+      var text1 = $("<p>");
+      var temp = Math.round(
+        response.list[i.toString()].main.temp * (9 / 5) - 459.67
+      );
+      text1.text("Temperature: " + temp + "℉");
+      var text2 = $("<p>");
+      text2.text(days[sum]);
+      sum++;
+
+      var text3 = $("<p>");
+      var humidity = response.list[i.toString()].main.humidity;
+      text3.text("Humidity: " + humidity + "%");
+
+      cardBody.prepend(text3);
+      cardBody.prepend(text1);
       cardBody.prepend(img);
+      cardBody.prepend(text2);
+
       cardBody.addClass("cards");
 
       card.prepend(cardBody);
       col.prepend(card);
-      $("#forecast").prepend(col);
+      $("#forecast").append(col);
     }
   });
 }
+
+// resets search history
+$(document).on("click", "#reset", function() {
+  localStorage.clear();
+  cities = [];
+  renderHistory();
+});

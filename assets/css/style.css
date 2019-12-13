@@ -1,9 +1,6 @@
 .black {
   background: black;
 }
-.cityButton {
-  margin-bottom: 5px;
-}
 
 .intro {
   font-size: 36px;
@@ -12,28 +9,22 @@
   /* text-align: left; */
 }
 
-body {
-  /* background-image: url("../images/back3.jpg ");
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-  color: rgb(219, 219, 219); */
-}
 .makeWhite {
   color: white;
 }
 
+.leftEntire {
+  background: rgb(246, 246, 246);
+}
 .leftSide {
-  border: 3px solid black;
-  margin: none;
   width: 100%;
 }
-/* .cards {
-  color: black;
-  margin-bottom: 10px;
-} */
-
-/* .whole {
-  border-radius: 0.5in;
-  max-width: 90%;
-} */
+.leftPanel {
+  padding: 16px;
+}
+#newCityArea {
+  border-radius: 4px;
+  border: 1px solid #dfdfdf;
+}
+.cityButton {
+}
