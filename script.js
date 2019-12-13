@@ -138,17 +138,10 @@ function renderHistory() {
   $("#newCityArea").empty();
 
   for (var i = 0; i < cities.length; i++) {
-    // var row = $("<div>");
-    // row.addClass("row");
-    // var col = $("<div>");
-    // row.addClass("col-sm-12");
     var element = $("<button>");
     element.text(cities[i]);
     element.addClass("cityButton");
-
     element.attr("value", cities[i]);
-    // col.prepend(element);
-    // row.prepend(element);
     $("#newCityArea").prepend(element);
   }
 }
