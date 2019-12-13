@@ -53,7 +53,6 @@ $(document).on("click", ".searchButton", function() {
         renderHistory();
       }
     });
-    // if
   }
 });
 
