@@ -80,12 +80,15 @@ $(document).on("click", ".cityButton", function() {
 
 // displays stagnent weather stats
 function displayCity(response) {
+  console.log(response);
   $(".stagnentWeatherInfo").empty();
   var temp = Math.round(response.main.temp * (9 / 5) - 459.67);
   var wind = Math.round(response.wind.speed * 2.237);
   var humidity = response.main.humidity;
 
-  $("#cityName").text(response.name + ", " + todayDate);
+  $("#cityName").text(
+    response.name + ", " + response.sys.country + " (" + todayDate + ")"
+  );
   $("#temp").text("Temperature is " + temp + " degrees F");
   $("#wind").text("Wind speeds of " + wind + " mph");
   $("#humidity").text("Humidity of " + humidity + "%");
